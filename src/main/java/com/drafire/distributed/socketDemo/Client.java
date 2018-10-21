@@ -11,7 +11,7 @@ public class Client {
         Socket socket = new Socket("localhost", 8888);
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+        PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);  //这里启动了自动刷新，下面需要用println
 
         String message = "hello world,drafire";
         writer.println(message);      //注意，这里使用的println，而不是write。println()的作用是，打印一个字符串，然后终止行。
