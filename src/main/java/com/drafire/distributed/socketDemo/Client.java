@@ -1,17 +1,30 @@
 package com.drafire.distributed.socketDemo;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) throws IOException {
         Socket socket = new Socket("localhost", 8888);
-        PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+
         String message = "hello world,drafire";
-        printWriter.write(message);
+        writer.println(message);      //注意，这里使用的pringln，而不是write
         System.out.println("客服端发送：" + message);
-        printWriter.close();
+
+        while (true) {
+            String serverData = reader.readLine();
+            if (serverData == null) {
+                break;
+            }
+            System.out.println("客户端收到：" + serverData);
+        }
+        writer.close();
         socket.close();
     }
 }
