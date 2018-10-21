@@ -14,7 +14,7 @@ public class Client {
         PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
 
         String message = "hello world,drafire";
-        writer.println(message);      //注意，这里使用的pringln，而不是write
+        writer.println(message);      //注意，这里使用的println，而不是write。println()的作用是，打印一个字符串，然后终止行。
         System.out.println("客服端发送：" + message);
 
         while (true) {
