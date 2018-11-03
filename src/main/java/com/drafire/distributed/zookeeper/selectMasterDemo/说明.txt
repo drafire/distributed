@@ -1,0 +1,6 @@
+使用curator 的api 模拟zookeeper竞争master，并且master失效情况下自动选举master的场景
+使用到技术如下：
+1、观察者模式
+2、工厂模式
+3、线程池
+

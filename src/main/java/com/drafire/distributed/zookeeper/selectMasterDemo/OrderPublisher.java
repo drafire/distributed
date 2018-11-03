@@ -1,4 +1,4 @@
-package com.drafire.distributed.zookeeper;
+package com.drafire.distributed.zookeeper.selectMasterDemo;
 
 public interface OrderPublisher {
     void register(Order order);
