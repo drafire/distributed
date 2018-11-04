@@ -5,7 +5,10 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 
-public class ClientUnit {
+/**
+ * curator 帮助类
+ */
+public class CuratorHelper {
     private static CuratorFramework curatorFramework;
 
     /**

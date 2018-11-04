@@ -1,12 +1,7 @@
 package com.drafire.distributed.zookeeper.curatorDemo;
 
-import ch.qos.logback.core.rolling.helper.SizeAndTimeBasedArchiveRemover;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.*;
-import org.apache.zookeeper.CreateMode;
-
-import javax.xml.soap.Node;
-import java.util.concurrent.TimeUnit;
 
 public class EventTest {
 
@@ -19,7 +14,7 @@ public class EventTest {
      */
 
     public static void main(String[] args) throws Exception {
-        CuratorFramework curatorFramework=ClientUnit.getCuratorFramework();
+        CuratorFramework curatorFramework= CuratorHelper.getCuratorFramework();
 
 //        NodeCache cache=new NodeCache(curatorFramework,"/curatoryTrac");
 //        cache.start(true);

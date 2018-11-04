@@ -1,8 +1,6 @@
 package com.drafire.distributed.zookeeper.selectMasterDemo;
 
-import com.drafire.distributed.zookeeper.curatorDemo.ClientUnit;
 import org.apache.curator.framework.CuratorFramework;
-import org.apache.zookeeper.data.Stat;
 
 /**
  * 订单工厂默认实现

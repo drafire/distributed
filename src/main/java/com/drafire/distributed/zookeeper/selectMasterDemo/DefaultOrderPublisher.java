@@ -1,6 +1,6 @@
 package com.drafire.distributed.zookeeper.selectMasterDemo;
 
-import com.drafire.distributed.zookeeper.curatorDemo.ClientUnit;
+import com.drafire.distributed.zookeeper.curatorDemo.CuratorHelper;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
@@ -16,20 +16,35 @@ import java.util.concurrent.Executors;
  */
 public class DefaultOrderPublisher implements OrderPublisher {
 
+    /**
+     * 订阅者列表
+     */
     private List<Order> list;
 
+    /**
+     * 用于执行同时选举的线程池。用Thread 会带来一些线程状态的问题，用线程池可以避免这些问题
+     */
     private ExecutorService orderThreadPool;
 
+    /**
+     * 被选举成为master的订单
+     */
     private Order masterOrder;
 
+    /**
+     * curator客户端
+     */
     private CuratorFramework curatorFramework;
 
+    /**
+     * 是否正在选举master标志
+     */
     private boolean isSelectingMaster = true;
 
     public DefaultOrderPublisher() {
         this.list = new ArrayList<>();
         this.orderThreadPool = Executors.newCachedThreadPool();
-        this.curatorFramework = ClientUnit.getInstance();
+        this.curatorFramework = CuratorHelper.getInstance();
     }
 
     @Override

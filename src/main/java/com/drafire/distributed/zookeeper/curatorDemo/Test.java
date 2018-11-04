@@ -1,16 +1,11 @@
 package com.drafire.distributed.zookeeper.curatorDemo;
 
 import org.apache.curator.framework.CuratorFramework;
-import org.apache.curator.framework.api.transaction.CuratorTransactionResult;
-import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.data.Stat;
-
-import java.util.Collection;
 
 public class Test {
     public static void main(String[] args) throws Exception {
         //这里不用像原生的api那样countdown，好爽，但是看日志的时候，有个等待的过程
-        CuratorFramework curatorFramework = ClientUnit.getInstance();
+        CuratorFramework curatorFramework = CuratorHelper.getInstance();
         System.out.println("连接成功");
 
         //fluent风格，也就是链式编程
