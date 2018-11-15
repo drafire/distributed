@@ -10,7 +10,7 @@ import io.netty.handler.codec.http.HttpResponseEncoder;
 
 public class DrafireTomcat {
 
-    private static final int PORT = 8080;
+    private static final int PORT = 8080; //自定义的监听端口
 
     private void run() throws InterruptedException {
         //接收请求的时间组
