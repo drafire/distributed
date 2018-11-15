@@ -5,6 +5,8 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.http.HttpRequestDecoder;
+import io.netty.handler.codec.http.HttpResponseEncoder;
 
 public class DrafireTomcat {
 
@@ -24,7 +26,12 @@ public class DrafireTomcat {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-
+                            //addLast()，添加到最后。因此采用倒叙
+                            //response需要编码再返回
+                            ch.pipeline().addLast(new HttpResponseEncoder());
+                            //request需要节码
+                            ch.pipeline().addLast(new HttpRequestDecoder());
+                            ch.pipeline().addLast(new DrafireTomcatHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)  //声明通道的属性和数量
