@@ -8,7 +8,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import java.util.Scanner;
 
 /**
- * 发布/订阅模式的生产者
+ * 发布/订阅模式的生产者（fanout模式）
  */
 public class EmitLogs {
     private static final String EXCHANGE_NAME = "logs";
