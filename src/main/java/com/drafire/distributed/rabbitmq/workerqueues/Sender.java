@@ -14,7 +14,7 @@ public class Sender {
         try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
             channel.queueDeclare(QUEUE_NAME, RabbitMQHelper.DURABLE, false, false, null);
 
-            String message = String.join(" ", args);
+            String message = "hello,work_queue";
 
             //交换器、路由（队列）名字、消息持久化参数 、消息
             channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));

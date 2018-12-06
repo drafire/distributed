@@ -19,6 +19,14 @@ public class RabbitMQHelper {
     public static final boolean NO_DURABLE = Boolean.FALSE;
     //预处理数量，为了避免造成旱的旱死，涝的涝死，可以使用这个配置
     public static final int PREFETCH_COUNT = 1;
+    //独占标志
+    public static final boolean EXCLUSIVE=Boolean.TRUE;
+    //非独占
+    public static final boolean NO_EXCLUSIVE=Boolean.FALSE;
+    //自动删除
+    public static final boolean AUTO_DELETE=Boolean.TRUE;
+    //不自动删除
+    public static final boolean NO_AUTO_DELETE=Boolean.FALSE;
 
     public static ConnectionFactory getConnectionFactory() {
         ConnectionFactory factory = new ConnectionFactory();
