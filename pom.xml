@@ -36,6 +36,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!--增加springboot集成rabbimq-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <!--增加springboot集成rabbimq-->
+
         <!--zookeeper-->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
