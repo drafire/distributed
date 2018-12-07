@@ -2,10 +2,7 @@ package com.drafire.distributed.rabbitmq.springboot;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -62,19 +59,55 @@ public class RabbitConfig {
         return new Queue(TOPIC_QUEUE_B);
     }
 
+    @Bean(name = TOPIC_QUEUE_C)
+    public Queue queueC() {
+        return new Queue(TOPIC_QUEUE_C);
+    }
+
     @Bean
     public TopicExchange getExchange() {
         return new TopicExchange(EXCHANGE_A);
     }
 
+    /**
+     * topic模式
+     * @param queueA
+     * @param exchange
+     * @return
+     */
     @Bean
-    Binding bindingExchangeQueueA(@Qualifier(TOPIC_QUEUE_A) Queue queueA, TopicExchange exchange) {
+    Binding bindingTopicExchangeQueueA(@Qualifier(TOPIC_QUEUE_A) Queue queueA, TopicExchange exchange) {
         return BindingBuilder.bind(queueA).to(exchange).with(ROUTINGKEY_A);
     }
 
     @Bean
-    Binding bindingExchangeQueueB(@Qualifier(TOPIC_QUEUE_B) Queue queueB, TopicExchange exchange) {
+    Binding bindingTopicExchangeQueueB(@Qualifier(TOPIC_QUEUE_B) Queue queueB, TopicExchange exchange) {
         return BindingBuilder.bind(queueB).to(exchange).with(ROUTINGKEY_B);
+    }
+
+    /**
+     * fanout模式
+     *
+     * @return
+     */
+    @Bean
+    FanoutExchange getFanoutExchange() {
+        return new FanoutExchange(EXCHANGE_B);
+    }
+
+    @Bean
+    Binding bindingFanoutExchangeQueueA(@Qualifier(TOPIC_QUEUE_A) Queue queueA, FanoutExchange exchange) {
+        return BindingBuilder.bind(queueA).to(exchange);   //因为是fanout模式，不需要with了
+    }
+
+    @Bean
+    Binding bindingFanoutExchangeQueueB(@Qualifier(TOPIC_QUEUE_B) Queue queueB, FanoutExchange exchange) {
+        return BindingBuilder.bind(queueB).to(exchange);   //因为是fanout模式，不需要with了
+    }
+
+    @Bean
+    Binding bindingFanoutExchangeQueueC(@Qualifier(TOPIC_QUEUE_C) Queue queueC, FanoutExchange exchange) {
+        return BindingBuilder.bind(queueC).to(exchange);   //因为是fanout模式，不需要with了
     }
 
     public static String getExchangeA() {

@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Scanner;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestSender {
+public class TopicTestSender {
 
     @Autowired
     private AmqpTemplate amqpTemplate;
@@ -30,6 +28,7 @@ public class TestSender {
 
     @Test
     public void send3() {
+        //这里没有匹配的，所以路由A和路由B都不会接收到消息
         amqpTemplate.convertAndSend(RabbitConfig.getExchangeA(),"routingKey_a.b.c", "队列b接收不到的消息");
     }
 }
