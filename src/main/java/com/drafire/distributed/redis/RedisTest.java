@@ -13,9 +13,6 @@ public class RedisTest {
 
     private final static Jedis jedis;
 
-    private static final String HOST = "192.168.109.128";
-    private static final Integer PORT = 6379;
-
     static {
         jedis = RedisHelper.getJedisByPool();
     }

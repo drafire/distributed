@@ -11,12 +11,7 @@ public class RedisHelper {
 
     public static Jedis getJedis() {
         Jedis jedis = new Jedis(HOST, PORT);
-        jedis.auth(password);
-        return jedis;
-    }
-
-    public static Jedis getJedis(int dbIndex){
-        Jedis jedis = new Jedis(HOST, PORT);
+        //如果是需要密码才能链接，必须这样进行授权
         jedis.auth(password);
         return jedis;
     }
