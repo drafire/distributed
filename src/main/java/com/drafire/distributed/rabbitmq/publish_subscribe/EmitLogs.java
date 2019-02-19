@@ -21,7 +21,7 @@ public class EmitLogs {
 
             Scanner scanner = new Scanner(System.in);
             int a = 1;
-            while (a > 0) {
+            while (a > 0) { 
                 if(scanner.hasNext()){
                     String message = scanner.nextLine();
                     channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));

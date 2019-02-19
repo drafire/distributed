@@ -1,4 +1,4 @@
-package com.drafire.distributed.socketDemo;
+package com.drafire.distributed.socket.socketDemo;
 
 import java.io.BufferedReader;
 import java.io.IOException;

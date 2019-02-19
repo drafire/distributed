@@ -1,4 +1,4 @@
-package com.drafire.distributed.multicastDemo;
+package com.drafire.distributed.socket.multicastDemo;
 
 import java.io.IOException;
 
